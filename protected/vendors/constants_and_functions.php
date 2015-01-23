@@ -14,27 +14,26 @@ defined('ADD_LAST_SLASH') or define('ADD_LAST_SLASH', 0);
  * @param string $postfix 
  * @return string
  */
-function rusDate($timestamp = 0, $postfix = "")
+function rusDate($timestamp = 0, $format = "{day} {month} {year}")
 {
     $day = date('d', $timestamp);
-    $mounth = date('m', $timestamp);
+    $mounth = date('n', $timestamp);
     $year = date('Y', $timestamp);
 
     $rusMounthList = array(
-        '01' => 'января',
-        '02' => 'февраля',
-        '03' => 'марта',
-        '04' => 'апреля',
-        '05' => 'мая',
-        '06' => 'июня',
-        '07' => 'июля',
-        '08' => 'августа',
-        '09' => 'сентября',
-        '10' => 'октября',
-        '11' => 'ноября',
-        '12' => 'декабря',
+        'января',
+        'февраля',
+        'марта',
+        'апреля',
+        'мая',
+        'июня',
+        'июля',
+        'августа',
+        'сентября',
+        'октября',
+        'ноября',
+        'декабря'
     );
-
-    return $day." ".$rusMounthList[$mounth]." ".$year." ".$postfix;
+    return strtr($format, array('{day}' => $day, '{month}' => $rusMounthList[$mounth], '{year}' => $year));
 }
 ?>
